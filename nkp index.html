@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyên Khang PC - Chuyên PC Gaming, Đồ Họa, Linh Kiện Máy Tính Chính Hãng</title>
+  <meta name="description" content="Nguyên Khang PC - 458/70 Đường 3 Tháng 2, Hòa Hưng, TP.HCM. Chuyên cung cấp PC Gaming, PC Đồ họa, Laptop, Màn hình và Linh kiện máy tính giá tốt nhất.">
+
+  <!-- 1. Nhúng Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Cấu hình màu sắc chủ đạo chuẩn Style GiaPhongPC -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#0a2558', // Xanh dương đậm chủ đạo
+              dark: '#061738',    // Xanh đen cho Topbar & Footer
+              light: '#153e85'    // Xanh sáng khi hover
+            },
+            accent: {
+              DEFAULT: '#ff4d00', // Cam đỏ nổi bật cho nút Mua ngay / Hotline
+              hover: '#e04300'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- 2. Nhúng FontAwesome 6 CDN (Lấy icon công nghệ, giỏ hàng, điện thoại) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- 3. Google Font (Inter / Roboto cho giao diện công nghệ sắc nét) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- 4. CSS Tùy chỉnh cho hiệu ứng lắc lư (Sticky Buttons) -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6;
+    }
+
+    /* Hiệu ứng rung lắc chuông điện thoại / Zalo lặp lại mỗi vài giây */
+    @keyframes phone-shake {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      10%, 30%, 50% { transform: rotate(-12deg) scale(1.08); }
+      20%, 40% { transform: rotate(12deg) scale(1.08); }
+      60% { transform: rotate(0deg) scale(1); }
+    }
+
+    .animate-shake-periodic {
+      animation: phone-shake 2.5s infinite ease-in-out;
+    }
+
+    /* Vòng tròn lan tỏa (Pulse ring) quanh nút gọi */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(34, 197, 94, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+
+    .pulse-green {
+      animation: pulse-ring 2s infinite;
+    }
+  </style>
+</head>
+<body class="text-gray-800 flex flex-col min-h-screen">
+
+  <!-- ==========================================
+       1. PHẦN ĐẦU TRANG (HEADER)
+       ========================================== -->
+  <header class="sticky top-0 z-50 shadow-md">
+    
+    <!-- Top Bar nhỏ (Tạo cảm giác uy tín cho shop PC) -->
+    <div class="bg-primary-dark text-gray-200 text-xs py-1.5 border-b border-blue-900/50 hidden md:block">
+      <div class="container mx-auto px-4 max-w-7xl flex justify-between items-center">
+        <div class="flex items-center space-x-6">
+          <span><i class="fa-solid fa-location-dot text-accent mr-1.5"></i>458/70 Đường 3 Tháng 2, P. Hòa Hưng (Q.10), TP.HCM</span>
+          <span><i class="fa-solid fa-envelope text-accent mr-1.5"></i>vovikha14@gmail.com</span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="text-yellow-400 font-medium"><i class="fa-solid fa-shield-halved mr-1"></i>Bảo hành chính hãng 1 đổi 1</span>
+          <span>|</span>
+          <span><i class="fa-solid fa-truck-fast text-accent mr-1"></i>Giao hàng siêu tốc TP.HCM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Header: Logo - Search Bar - Hotline & Giỏ hàng -->
+    <div class="bg-primary text-white py-3.5">
+      <div class="container mx-auto px-4 max-w-7xl flex flex-wrap items-center justify-between gap-4">
+        
+        <!-- Logo Shop (Góc trên bên trái) -->
+        <a href="index.html" class="flex items-center space-x-2.5 group">
+          <div class="w-11 h-11 rounded-lg bg-accent flex items-center justify-center text-white text-2xl font-black shadow-lg group-hover:scale-105 transition">
+            <i class="fa-solid fa-computer"></i>
+          </div>
+          <div>
+            <span class="text-xl md:text-2xl font-extrabold tracking-tight block leading-none text-white">
+              NGUYÊN KHANG <span class="text-accent">PC</span>
+            </span>
+            <span class="text-[11px] text-blue-200 tracking-widest uppercase font-medium">High-End Gaming & Workstation</span>
+          </div>
+        </a>
+
+        <!-- Thanh tìm kiếm (Search Bar) thông minh ở giữa -->
+        <div class="w-full md:flex-1 max-w-xl order-3 md:order-2">
+          <form action="category.html" method="GET" class="relative flex items-center">
+            <input 
+              type="text" 
+              name="q"
+              id="search-input"
+              placeholder="Tìm nhanh PC Gaming, RTX 4060, i5-13400F, màn hình..." 
+              class="w-full pl-4 pr-12 py-2.5 rounded-lg text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-accent shadow-inner"
+            >
+            <button 
+              type="submit" 
+              class="absolute right-1.5 bg-accent hover:bg-accent-hover text-white px-4 py-1.5 rounded-md transition flex items-center justify-center"
+              title="Tìm kiếm"
+            >
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Cụm Hotline & Giỏ hàng (Bên phải) -->
+        <div class="flex items-center space-x-3 md:space-x-4 order-2 md:order-3">
+          
+          <!-- Nút Hotline nổi bật -->
+          <a href="tel:0708715678" class="hidden sm:flex items-center space-x-2.5 bg-primary-light hover:bg-accent transition px-3.5 py-2 rounded-lg border border-blue-700/60">
+            <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center animate-pulse">
+              <i class="fa-solid fa-phone-volume text-sm"></i>
+            </div>
+            <div class="leading-tight">
+              <span class="text-[11px] text-blue-200 block">Hotline tư vấn</span>
+              <span class="text-sm font-extrabold text-yellow-400 tracking-wide">0708.715.678</span>
+            </div>
+          </a>
+
+          <!-- Nút Giỏ hàng kèm số lượng [ 0 ] -->
+          <a href="cart.html" class="relative flex items-center space-x-2 bg-accent hover:bg-accent-hover text-white px-4 py-2.5 rounded-lg font-semibold text-sm shadow-md transition">
+            <i class="fa-solid fa-cart-shopping text-lg"></i>
+            <span class="hidden md:inline">Giỏ hàng</span>
+            <span id="cart-count" class="bg-white text-accent font-extrabold px-2 py-0.5 rounded-full text-xs shadow">
+              0
+            </span>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Thanh Menu Danh mục sản phẩm (Mega Menu ngang - 6 danh mục cốt lõi) -->
+    <nav class="bg-primary-dark text-white border-t border-blue-900/60">
+      <div class="container mx-auto px-4 max-w-7xl">
+        <ul class="flex items-center justify-start md:justify-between overflow-x-auto no-scrollbar text-sm font-semibold whitespace-nowrap">
+          
+          <!-- 1. PC Gaming -->
+          <li>
+            <a href="category.html?cat=pc-gaming" class="flex items-center space-x-2 px-4 py-3 hover:bg-accent transition">
+              <i class="fa-solid fa-gamepad text-accent group-hover:text-white"></i>
+              <span>PC GAMING</span>
+            </a>
+          </li>
+
+          <!-- 2. PC Đồ họa / Văn phòng -->
+          <li>
+            <a href="category.html?cat=pc-do-hoa" class="flex items-center space-x-2 px-4 py-3 hover:bg-accent transition">
+              <i class="fa-solid fa-wand-magic-sparkles text-accent"></i>
+              <span>PC ĐỒ HỌA / WORKSTATION</span>
+            </a>
+          </li>
+
+          <!-- 3. Laptop -->
+          <li>
+            <a href="category.html?cat=laptop" class="flex items-center space-x-2 px-4 py-3 hover:bg-accent transition">
+              <i class="fa-solid fa-laptop text-accent"></i>
+              <span>LAPTOP</span>
+            </a>
+          </li>
+
+          <!-- 4. Màn hình máy tính -->
+          <li>
+            <a href="category.html?cat=man-hinh" class="flex items-center space-x-2 px-4 py-3 hover:bg-accent transition">
+              <i class="fa-solid fa-desktop text-accent"></i>
+              <span>MÀN HÌNH</span>
+            </a>
+          </li>
+
+          <!-- 5. Linh kiện PC (Có Dropdown menu con khi di chuột vào trên máy tính) -->
+          <li class="relative group">
+            <a href="category.html?cat=linh-kien" class="flex items-center space-x-2 px-4 py-3 hover:bg-accent transition">
+              <i class="fa-solid fa-microchip text-accent"></i>
+              <span>LINH KIỆN PC</span>
+              <i class="fa-solid fa-chevron-down text-[10px] ml-1 opacity-75"></i>
+            </a>
+            <!-- Sub-menu Linh kiện -->
+            <div class="absolute left-0 top-full w-56 bg-white text-gray-800 shadow-xl rounded-b-lg border-t-2 border-accent hidden group-hover:block z-50">
+              <a href="category.html?cat=cpu" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-microchip w-5 text-primary"></i> Vi xử lý (CPU)</a>
+              <a href="category.html?cat=mainboard" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-chess-board w-5 text-primary"></i> Bo mạch chủ (Mainboard)</a>
+              <a href="category.html?cat=ram" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-memory w-5 text-primary"></i> Bộ nhớ RAM</a>
+              <a href="category.html?cat=vga" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-fan w-5 text-primary"></i> Card màn hình (VGA)</a>
+              <a href="category.html?cat=ssd" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-hard-drive w-5 text-primary"></i> Ổ cứng SSD / HDD</a>
+              <a href="category.html?cat=psu-case-tan" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent"><i class="fa-solid fa-bolt w-5 text-primary"></i> Nguồn / Vỏ Case / Tản nhiệt</a>
+            </div>
+          </li>
+
+          <!-- 6. Gaming Gear -->
+          <li>
+            <a href="category.html?cat=gaming-gear" class="flex items-center space-x-2 px-4 py-3 hover:bg-accent transition">
+              <i class="fa-solid fa-headset text-accent"></i>
+              <span>GAMING GEAR</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- ==========================================
+       PHẦN THÂN TRANG CHỦ (PLACEHOLDER CHỜ DỮ LIỆU SẢN PHẨM)
+       ========================================== -->
+  <main class="flex-grow container mx-auto px-4 max-w-7xl py-8">
+    <!-- Khu vực này sẽ hiển thị Banner Slide và Danh sách sản phẩm từ js/data.js ở bước tiếp theo -->
+    <div class="bg-gradient-to-r from-primary to-primary-light rounded-2xl p-8 md:p-12 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-4 max-w-xl">
+        <span class="bg-accent text-white text-xs font-bold uppercase px-3 py-1 rounded-full tracking-wider">Khuyến mãi khai trương web</span>
+        <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">
+          Chiến Mọi Tựa Game Cùng <span class="text-yellow-400">Nguyên Khang PC</span>
+        </h1>
+        <p class="text-blue-100 text-sm md:text-base">
+          Tối ưu hiệu năng trên từng đồng chi phí. Cam kết linh kiện chính hãng, hỗ trợ trả góp nhanh chóng và giao lắp tận nơi tại TP.HCM.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-3">
+          <a href="category.html?cat=pc-gaming" class="bg-accent hover:bg-accent-hover text-white font-bold px-6 py-3 rounded-lg shadow-lg transition flex items-center space-x-2">
+            <span>XEM CẤU HÌNH PC HOT</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="tel:0708715678" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg border border-white/30 transition">
+            Gọi tư vấn: 0708.715.678
+          </a>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="w-48 h-48 md:w-60 md:h-60 rounded-2xl bg-white/10 backdrop-blur flex flex-col items-center justify-center border border-white/20 p-4">
+          <i class="fa-solid fa-computer text-6xl text-yellow-400 mb-3"></i>
+          <p class="text-xs text-blue-200">Khung chờ hiển thị Banner & Danh sách sản phẩm từ <code>js/data.js</code></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ==========================================
+       2. PHẦN CHÂN TRANG (FOOTER - 3 CỘT CHUẨN YÊU CẦU)
+       ========================================== -->
+  <footer class="bg-primary-dark text-gray-300 pt-12 pb-6 border-t-4 border-accent mt-12">
+    <div class="container mx-auto px-4 max-w-7xl">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-blue-900/60">
+        
+        <!-- CỘT 1: Thông tin shop Nguyên Khang PC + Bản đồ Google Maps -->
+        <div class="space-y-3">
+          <h3 class="text-white text-lg font-extrabold tracking-wide uppercase flex items-center space-x-2">
+            <span class="w-1.5 h-5 bg-accent inline-block rounded"></span>
+            <span>NGUYÊN KHANG PC</span>
+          </h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Chuyên cung cấp PC Gaming, Máy tính đồ họa Workstation, Laptop và Linh kiện máy tính chính hãng với mức giá cạnh tranh nhất.
+          </p>
+          <ul class="space-y-2.5 text-sm pt-1">
+            <li class="flex items-start space-x-2.5">
+              <i class="fa-solid fa-location-dot text-accent mt-1"></i>
+              <span><strong>Địa chỉ:</strong> 458/70 Đường 3 Tháng 2, Phường Hòa Hưng (Quận 10), TP. Hồ Chí Minh</span>
+            </li>
+            <li class="flex items-center space-x-2.5">
+              <i class="fa-solid fa-phone-volume text-accent"></i>
+              <span><strong>Hotline / Zalo:</strong> <a href="tel:0708715678" class="text-yellow-400 font-bold hover:underline">0708.715.678</a> (Mr. Kha)</span>
+            </li>
+            <li class="flex items-center space-x-2.5">
+              <i class="fa-solid fa-envelope text-accent"></i>
+              <span><strong>Email:</strong> <a href="mailto:vovikha14@gmail.com" class="hover:text-white">vovikha14@gmail.com</a></span>
+            </li>
+          </ul>
+
+          <!-- Nhúng Google Maps vị trí 458/70 Đường 3 Tháng 2 -->
+          <div class="pt-2">
+            <iframe 
+              src="https://www.google.com/maps?q=458/70+Đường+3+Tháng+2,+Hòa+Hưng,+Hồ+Chí+Minh&output=embed" 
+              width="100%" 
+              height="150" 
+              style="border:0; border-radius: 8px;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Bản đồ Nguyên Khang PC">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- CỘT 2: Danh mục hỗ trợ khách hàng (Các trang chính sách - Link chờ) -->
+        <div class="space-y-3">
+          <h3 class="text-white text-lg font-extrabold tracking-wide uppercase flex items-center space-x-2">
+            <span class="w-1.5 h-5 bg-accent inline-block rounded"></span>
+            <span>HỖ TRỢ KHÁCH HÀNG</span>
+          </h3>
+          <ul class="space-y-3 text-sm pt-1">
+            <li>
+              <a href="#chinh-sach-van-chuyen" class="flex items-center space-x-2 hover:text-accent transition">
+                <i class="fa-solid fa-chevron-right text-xs text-accent"></i>
+                <span>Chính sách vận chuyển & giao nhận</span>
+              </a>
+            </li>
+            <li>
+              <a href="#chinh-sach-doi-tra" class="flex items-center space-x-2 hover:text-accent transition">
+                <i class="fa-solid fa-chevron-right text-xs text-accent"></i>
+                <span>Chính sách đổi trả & hoàn tiền linh kiện lỗi</span>
+              </a>
+            </li>
+            <li>
+              <a href="#huong-dan-tra-gop" class="flex items-center space-x-2 hover:text-accent transition">
+                <i class="fa-solid fa-chevron-right text-xs text-accent"></i>
+                <span>Hướng dẫn thanh toán & mua PC trả góp</span>
+              </a>
+            </li>
+            <li>
+              <a href="#chinh-sach-bao-hanh" class="flex items-center space-x-2 hover:text-accent transition">
+                <i class="fa-solid fa-chevron-right text-xs text-accent"></i>
+                <span>Quy định bảo hành chính hãng tại shop</span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Khung cam kết uy tín bổ trợ -->
+          <div class="bg-primary p-4 rounded-lg border border-blue-800/60 mt-4 space-y-2 text-xs">
+            <div class="font-bold text-yellow-400 uppercase"><i class="fa-solid fa-bolt mr-1"></i> Hỗ trợ kỹ thuật trực tiếp</div>
+            <p class="text-gray-300">Cài đặt Windows, phần mềm đồ họa và vệ sinh PC miễn phí cho khách hàng mua máy tại Nguyên Khang PC.</p>
+          </div>
+        </div>
+
+        <!-- CỘT 3: Khung Fanpage Facebook (Widget uy tín) -->
+        <div class="space-y-3">
+          <h3 class="text-white text-lg font-extrabold tracking-wide uppercase flex items-center space-x-2">
+            <span class="w-1.5 h-5 bg-accent inline-block rounded"></span>
+            <span>KẾT NỐI VỚI CHÚNG TÔI</span>
+          </h3>
+          <p class="text-sm text-gray-400">
+            Theo dõi Fanpage Nguyên Khang PC để cập nhật bảng giá linh kiện và các kèo Flash Sale hàng ngày:
+          </p>
+
+          <!-- Khung Facebook Page Plugin (Khi có link Fanpage chính thức của anh Kha, chỉ cần thay URL sau chữ href=) -->
+          <div class="bg-white rounded-lg p-2 shadow-inner overflow-hidden">
+            <iframe 
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=210&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true" 
+              width="100%" 
+              height="210" 
+              style="border:none;overflow:hidden" 
+              scrolling="no" 
+              frameborder="0" 
+              allowfullscreen="true" 
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              title="Fanpage Nguyên Khang PC">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bản quyền dưới cùng -->
+      <div class="pt-6 text-center text-xs text-gray-400 flex flex-col sm:flex-row justify-between items-center gap-2">
+        <p>© 2026 <strong>Nguyên Khang PC</strong>. All rights reserved.</p>
+        <p>Địa chỉ: 458/70 Đường 3 Tháng 2, Phường Hòa Hưng, TP.HCM | Hotline: 0708.715.678</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ==========================================
+       3. TÍNH NĂNG ĐẶC BIỆT: NÚT TIẾP CẬN NHANH (STICKY BUTTONS)
+       ========================================== -->
+  <div class="fixed bottom-6 right-5 z-50 flex flex-col space-y-3.5">
+    
+    <!-- Nút 2: Chat Zalo (Màu xanh dương) -->
+    <a 
+      href="https://zalo.me/0708715678" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="group flex items-center justify-end"
+      title="Chat Zalo với Nguyên Khang PC"
+    >
+      <span class="mr-2.5 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 hidden sm:inline-block">
+        Chat Zalo tư vấn ngay
+      </span>
+      <div class="w-13 h-13 w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex flex-col items-center justify-center shadow-xl border-2 border-white animate-shake-periodic">
+        <span class="font-black text-[13px] tracking-tighter leading-none">Zalo</span>
+      </div>
+    </a>
+
+    <!-- Nút 1: Gọi điện ngay (Màu xanh lá) -->
+    <a 
+      href="tel:0708715678" 
+      class="group flex items-center justify-end"
+      title="Gọi ngay 0708.715.678"
+    >
+      <span class="mr-2.5 bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 hidden sm:inline-block">
+        Hotline: 0708.715.678
+      </span>
+      <div class="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center shadow-xl border-2 border-white pulse-green animate-shake-periodic">
+        <i class="fa-solid fa-phone-volume text-lg"></i>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Nhúng file dữ liệu và xử lý logic (Sẽ code ở bước tiếp theo) -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
