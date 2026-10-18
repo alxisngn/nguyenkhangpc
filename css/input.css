@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', 'Roboto', sans-serif; }
+
+@keyframes phone-ring {
+  0%, 100% { transform: rotate(0deg); }
+  10%, 30%, 50% { transform: rotate(-18deg); }
+  20%, 40%, 60% { transform: rotate(18deg); }
+  70% { transform: rotate(0deg); }
+}
+.ring-phone { animation: phone-ring 2.4s ease-in-out infinite; transform-origin: 50% 50%; }
+
+@keyframes fab-shake {
+  0%, 55%, 100% { transform: rotate(0deg) scale(1); }
+  60% { transform: rotate(-14deg) scale(1.08); }
+  66% { transform: rotate(14deg) scale(1.08); }
+  72% { transform: rotate(-10deg) scale(1.05); }
+  78% { transform: rotate(10deg) scale(1.05); }
+  84% { transform: rotate(-4deg) scale(1.02); }
+  90% { transform: rotate(0deg) scale(1); }
+}
+@keyframes fab-pulse {
+  0% { transform: scale(1); opacity: .65; }
+  70% { transform: scale(1.9); opacity: 0; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+.fab { position: relative; animation: fab-shake 4s ease-in-out infinite; }
+.fab::before, .fab::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: inherit;
+  z-index: -1;
+  animation: fab-pulse 2s ease-out infinite;
+}
+.fab::after { animation-delay: 1s; }
+.fab-zalo { animation-delay: 0s; }
+.fab-call { animation-delay: .6s; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-y { animation: float-y 4s ease-in-out infinite; }
+
+.product-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(10, 37, 88, .18); border-color: #ff4d00; }
+
+.menu-item > .dropdown { opacity: 0; visibility: hidden; transform: translateY(8px); transition: all .2s ease; }
+.menu-item:hover > .dropdown,
+.menu-item:focus-within > .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: #153e85; border-radius: 8px; }
+::-webkit-scrollbar-track { background: #eef2f9; }

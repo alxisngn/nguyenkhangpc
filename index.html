@@ -1,450 +1,819 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nguyên Khang PC - Chuyên PC Gaming, Đồ Họa, Linh Kiện Máy Tính Chính Hãng</title>
-  <meta name="description" content="Nguyên Khang PC - 458/70 Đường 3 Tháng 2, Hòa Hưng, TP.HCM. Chuyên cung cấp PC Gaming, PC Đồ họa, Laptop, Màn hình và Linh kiện máy tính giá tốt nhất.">
+  <title>Nguyên Khang PC - PC Gaming, Laptop, Màn hình & Linh kiện máy tính chính hãng TP.HCM</title>
+  <meta name="description" content="Nguyên Khang PC - Chuyên PC Gaming, PC đồ họa, laptop, màn hình và linh kiện máy tính chính hãng. Tư vấn cấu hình tối ưu, bảo hành chính hãng, giao lắp tận nơi TP.HCM.">
+  <meta name="keywords" content="PC Gaming, linh kiện máy tính, laptop, màn hình máy tính, VGA, CPU, RAM, SSD, Nguyên Khang PC, TP.HCM">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Nguyên Khang PC - High-End Gaming & Workstation">
+  <meta property="og:description" content="PC Gaming, PC đồ họa, laptop, màn hình, linh kiện chính hãng. Giao lắp tận nơi TP.HCM.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0a2558">
 
-  <!-- 1. Nhúng Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Cấu hình màu sắc chủ đạo chuẩn Style GiaPhongPC -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: {
-              DEFAULT: '#0a2558', // Xanh dương đậm chủ đạo
-              dark: '#061738',    // Xanh đen cho Topbar & Footer
-              light: '#153e85'    // Xanh sáng khi hover
-            },
-            accent: {
-              DEFAULT: '#ff4d00', // Cam đỏ nổi bật cho nút Mua ngay / Hotline
-              hover: '#e04300'
-            }
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- 2. Nhúng FontAwesome 6 CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- 3. Google Font (Inter) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Analytics (thay G-XXXXXXXXXX bằng ID thật khi có) -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
 
-  <!-- 4. CSS Tùy chỉnh cho hiệu ứng lắc lư (Sticky Buttons) -->
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f3f4f6;
-    }
 
-    @keyframes phone-shake {
-      0%, 100% { transform: rotate(0deg) scale(1); }
-      10%, 30%, 50% { transform: rotate(-12deg) scale(1.08); }
-      20%, 40% { transform: rotate(12deg) scale(1.08); }
-      60% { transform: rotate(0deg) scale(1); }
-    }
-
-    .animate-shake-periodic {
-      animation: phone-shake 2.5s infinite ease-in-out;
-    }
-
-    @keyframes pulse-ring {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(34, 197, 94, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-    }
-
-    .pulse-green {
-      animation: pulse-ring 2s infinite;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="text-gray-800 flex flex-col min-h-screen">
 
-  <!-- ==========================================
-       1. PHẦN ĐẦU TRANG (HEADER)
-       ========================================== -->
-  <header class="sticky top-0 z-50 shadow-md">
-    
-    <!-- Top Bar nhỏ -->
-    <div class="bg-primary-dark text-gray-200 text-xs py-1.5 border-b border-blue-900/50 hidden md:block">
-      <div class="container mx-auto px-4 max-w-7xl flex justify-between items-center">
-        <div class="flex items-center space-x-6">
+<body class="bg-slate-100 text-slate-800 antialiased">
+
+  <!-- ================= HEADER (STICKY) ================= -->
+  <header class="sticky top-0 z-40 shadow-md">
+
+    <!-- Topbar (ẩn trên mobile) -->
+    <div class="hidden md:block bg-primary-dark text-slate-200 text-xs">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-5 flex-wrap">
           <span><i class="fa-solid fa-location-dot text-accent mr-1.5"></i>458/70 Đường 3 Tháng 2, P. Hòa Hưng (Q.10), TP.HCM</span>
-          <span><i class="fa-solid fa-envelope text-accent mr-1.5"></i>vovikha14@gmail.com</span>
+          <a href="https://www.facebook.com/nguyenkhang0946102477" target="_blank" rel="noopener noreferrer" class="hover:text-white transition"><i class="fa-brands fa-facebook text-accent mr-1.5"></i>Facebook</a>
         </div>
-        <div class="flex items-center space-x-4">
-          <a href="https://www.facebook.com/nguyenkhang0946102477" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-400 transition">
-            <i class="fa-brands fa-facebook text-blue-400 mr-1"></i>Facebook Nguyên Khang PC
-          </a>
-          <span>|</span>
-          <span class="text-yellow-400 font-medium"><i class="fa-solid fa-shield-halved mr-1"></i>Bảo hành uy tín</span>
-          <span>|</span>
-          <span><i class="fa-solid fa-truck-fast text-accent mr-1"></i>Giao hàng siêu tốc TP.HCM</span>
+        <div class="font-semibold text-white">
+          <i class="fa-solid fa-shield-halved text-accent mr-1.5"></i>Bảo hành chính hãng - Giao nhanh TP.HCM
         </div>
       </div>
     </div>
 
-    <!-- Main Header: Logo - Search Bar - Hotline & Giỏ hàng -->
-    <div class="bg-primary text-white py-3.5">
-      <div class="container mx-auto px-4 max-w-7xl flex flex-wrap items-center justify-between gap-4">
-        
-        <!-- Logo Shop -->
-        <a href="index.html" class="flex items-center space-x-2.5 group">
-          <div class="w-11 h-11 rounded-lg bg-accent flex items-center justify-center text-white text-2xl font-black shadow-lg group-hover:scale-105 transition">
-            <i class="fa-solid fa-computer"></i>
-          </div>
-          <div>
-            <span class="text-xl md:text-2xl font-extrabold tracking-tight block leading-none text-white">
-              NGUYÊN KHANG <span class="text-accent">PC</span>
-            </span>
-            <span class="text-[11px] text-blue-200 tracking-widest uppercase font-medium">High-End Gaming & Workstation</span>
-          </div>
+    <!-- Main header -->
+    <div class="bg-primary">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-3 md:gap-6">
+
+        <!-- Nút menu mobile -->
+        <button id="mobile-menu-btn" type="button" aria-label="Mở menu" class="md:hidden text-white text-2xl w-10 h-10 flex items-center justify-center rounded-lg hover:bg-primary-light transition">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 shrink-0">
+          <span class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-accent to-orange-400 flex items-center justify-center text-white text-xl md:text-2xl shadow-lg">
+            <i class="fa-solid fa-desktop"></i>
+          </span>
+          <span class="leading-tight">
+            <span class="block text-white font-black text-base md:text-xl tracking-wide">NGUYÊN KHANG <span class="text-accent">PC</span></span>
+            <span class="hidden sm:block text-[10px] md:text-[11px] text-sky-200 font-medium tracking-wider uppercase">High-End Gaming &amp; Workstation</span>
+          </span>
         </a>
 
-        <!-- Thanh tìm kiếm (Search Bar) thông minh ở giữa -->
-        <div class="w-full md:flex-1 max-w-xl order-3 md:order-2">
-          <form action="category.html" method="GET" class="relative flex items-center">
-            <input 
-              type="text" 
-              name="q"
-              id="search-input"
-              placeholder="Tìm nhanh PC Gaming, RTX 4060, i5-13400F, màn hình..." 
-              class="w-full pl-4 pr-12 py-2.5 rounded-lg text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-accent shadow-inner"
-            >
-            <button 
-              type="submit" 
-              class="absolute right-1.5 bg-accent hover:bg-accent-hover text-white px-4 py-1.5 rounded-md transition flex items-center justify-center"
-              title="Tìm kiếm"
-            >
-              <i class="fa-solid fa-magnifying-glass"></i>
+        <!-- Thanh tìm kiếm (desktop/tablet) -->
+        <form action="category.html" method="GET" class="hidden md:flex flex-1 max-w-2xl mx-auto">
+          <div class="flex w-full bg-white rounded-lg overflow-hidden shadow-inner ring-2 ring-transparent focus-within:ring-accent transition">
+            <input id="search-input" name="q" type="text" autocomplete="off"
+              placeholder="Tìm linh kiện: RTX 4060, i5-13400F, màn hình 27 inch..."
+              class="flex-1 px-4 py-2.5 text-sm text-slate-800 outline-none placeholder:text-slate-400">
+            <button type="submit" class="bg-accent hover:bg-accent-hover text-white px-5 font-semibold text-sm transition">
+              <i class="fa-solid fa-magnifying-glass mr-1"></i><span class="hidden lg:inline">Tìm kiếm</span>
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
 
-        <!-- Cụm Hotline & Giỏ hàng -->
-        <div class="flex items-center space-x-3 md:space-x-4 order-2 md:order-3">
-          
-          <!-- Nút Hotline nổi bật -->
-          <a href="tel:0708715678" class="hidden sm:flex items-center space-x-2.5 bg-primary-light hover:bg-accent transition px-3.5 py-2 rounded-lg border border-blue-700/60">
-            <div class="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center animate-pulse">
-              <i class="fa-solid fa-phone-volume text-sm"></i>
-            </div>
-            <div class="leading-tight">
-              <span class="text-[11px] text-blue-200 block">Hotline tư vấn</span>
-              <span class="text-sm font-extrabold text-yellow-400 tracking-wide">0708.715.678</span>
-            </div>
-          </a>
-
-          <!-- Nút Giỏ hàng kèm số lượng [ 0 ] -->
-          <a href="cart.html" class="relative flex items-center space-x-2 bg-accent hover:bg-accent-hover text-white px-4 py-2.5 rounded-lg font-semibold text-sm shadow-md transition">
-            <i class="fa-solid fa-cart-shopping text-lg"></i>
-            <span class="hidden md:inline">Giỏ hàng</span>
-            <span id="cart-count" class="bg-white text-accent font-extrabold px-2 py-0.5 rounded-full text-xs shadow">
-              0
+        <!-- Hotline + Giỏ hàng -->
+        <div class="flex items-center gap-2 md:gap-4 ml-auto md:ml-0 shrink-0">
+          <a href="tel:0708715678" class="hidden sm:flex items-center gap-2.5 bg-accent hover:bg-accent-hover text-white rounded-lg px-3 md:px-4 py-2 shadow-lg transition">
+            <i class="fa-solid fa-phone-volume text-lg ring-phone"></i>
+            <span class="leading-tight">
+              <span class="block text-[10px] uppercase font-medium opacity-90">Hotline tư vấn</span>
+              <span class="block font-extrabold text-sm md:text-base">0708.715.678</span>
             </span>
           </a>
 
+          <a href="cart.html" class="relative flex items-center gap-2 text-white hover:text-accent transition px-2 py-2" aria-label="Giỏ hàng">
+            <i class="fa-solid fa-cart-shopping text-2xl"></i>
+            <span id="cart-count" class="absolute -top-0.5 -right-0.5 min-w-[20px] h-5 px-1 rounded-full bg-accent text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-primary">0</span>
+            <span class="hidden lg:block text-sm font-semibold">Giỏ hàng</span>
+          </a>
         </div>
-
       </div>
+
+      <!-- Tìm kiếm mobile -->
+      <form action="category.html" method="GET" class="md:hidden px-4 pb-3">
+        <div class="flex bg-white rounded-lg overflow-hidden">
+          <input name="q" type="text" autocomplete="off" placeholder="Tìm RTX 4060, i5-13400F, màn hình..."
+            class="flex-1 px-3 py-2.5 text-sm outline-none placeholder:text-slate-400">
+          <button type="submit" class="bg-accent text-white px-4" aria-label="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </form>
     </div>
 
-    <!-- Thanh Menu Danh mục sản phẩm (Đã tinh gọn còn 5 danh mục cốt lõi, bỏ Gaming Gear) -->
-    <nav class="bg-primary-dark text-white border-t border-blue-900/60">
-      <div class="container mx-auto px-4 max-w-7xl">
-        <ul class="flex items-center justify-start md:justify-around overflow-x-auto no-scrollbar text-sm font-semibold whitespace-nowrap">
-          
-          <!-- 1. PC Gaming -->
-          <li>
-            <a href="category.html?cat=pc-gaming" class="flex items-center space-x-2 px-5 py-3 hover:bg-accent transition">
-              <i class="fa-solid fa-gamepad text-accent"></i>
-              <span>PC GAMING</span>
-            </a>
-          </li>
-
-          <!-- 2. PC Đồ họa / Văn phòng -->
-          <li>
-            <a href="category.html?cat=pc-do-hoa" class="flex items-center space-x-2 px-5 py-3 hover:bg-accent transition">
-              <i class="fa-solid fa-wand-magic-sparkles text-accent"></i>
-              <span>PC ĐỒ HỌA / VĂN PHÒNG</span>
-            </a>
-          </li>
-
-          <!-- 3. Laptop -->
-          <li>
-            <a href="category.html?cat=laptop" class="flex items-center space-x-2 px-5 py-3 hover:bg-accent transition">
-              <i class="fa-solid fa-laptop text-accent"></i>
-              <span>LAPTOP</span>
-            </a>
-          </li>
-
-          <!-- 4. Màn hình máy tính -->
-          <li>
-            <a href="category.html?cat=man-hinh" class="flex items-center space-x-2 px-5 py-3 hover:bg-accent transition">
-              <i class="fa-solid fa-desktop text-accent"></i>
-              <span>MÀN HÌNH MÁY TÍNH</span>
-            </a>
-          </li>
-
-          <!-- 5. Linh kiện PC (Có Dropdown menu con) -->
-          <li class="relative group">
-            <a href="category.html?cat=linh-kien" class="flex items-center space-x-2 px-5 py-3 hover:bg-accent transition">
-              <i class="fa-solid fa-microchip text-accent"></i>
-              <span>LINH KIỆN PC</span>
-              <i class="fa-solid fa-chevron-down text-[10px] ml-1 opacity-75"></i>
-            </a>
-            <!-- Sub-menu Linh kiện -->
-            <div class="absolute right-0 md:left-0 top-full w-60 bg-white text-gray-800 shadow-xl rounded-b-lg border-t-2 border-accent hidden group-hover:block z-50">
-              <a href="category.html?cat=cpu" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-microchip w-5 text-primary"></i> Vi xử lý (CPU)</a>
-              <a href="category.html?cat=mainboard" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-chess-board w-5 text-primary"></i> Bo mạch chủ (Mainboard)</a>
-              <a href="category.html?cat=ram" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-memory w-5 text-primary"></i> Bộ nhớ RAM</a>
-              <a href="category.html?cat=vga" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-fan w-5 text-primary"></i> Card màn hình (VGA)</a>
-              <a href="category.html?cat=ssd" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent border-b border-gray-100"><i class="fa-solid fa-hard-drive w-5 text-primary"></i> Ổ cứng SSD / HDD</a>
-              <a href="category.html?cat=tan-nhiet-psu-case" class="block px-4 py-2.5 hover:bg-blue-50 hover:text-accent"><i class="fa-solid fa-bolt w-5 text-primary"></i> Nguồn / Case / Tản nhiệt</a>
-            </div>
-          </li>
-
-        </ul>
-      </div>
+    <!-- Thanh Menu điều hướng ngang (Mega Menu - desktop) -->
+    <nav class="hidden md:block bg-primary-light border-t border-white/10" aria-label="Danh mục chính">
+      <ul class="max-w-7xl mx-auto px-4 flex items-stretch text-sm font-bold uppercase tracking-wide">
+        <li class="menu-item relative">
+          <a href="category.html?cat=pc-gaming" class="flex items-center gap-2 px-5 py-3.5 text-white hover:bg-accent transition">
+            <i class="fa-solid fa-gamepad"></i>PC GAMING
+          </a>
+        </li>
+        <li class="menu-item relative">
+          <a href="category.html?cat=pc-do-hoa" class="flex items-center gap-2 px-5 py-3.5 text-white hover:bg-accent transition">
+            <i class="fa-solid fa-palette"></i>PC ĐỒ HỌA / VĂN PHÒNG
+          </a>
+        </li>
+        <li class="menu-item relative">
+          <a href="category.html?cat=laptop" class="flex items-center gap-2 px-5 py-3.5 text-white hover:bg-accent transition">
+            <i class="fa-solid fa-laptop"></i>LAPTOP
+          </a>
+        </li>
+        <li class="menu-item relative">
+          <a href="category.html?cat=man-hinh" class="flex items-center gap-2 px-5 py-3.5 text-white hover:bg-accent transition">
+            <i class="fa-solid fa-tv"></i>MÀN HÌNH MÁY TÍNH
+          </a>
+        </li>
+        <li class="menu-item relative">
+          <a href="category.html?cat=linh-kien" class="flex items-center gap-2 px-5 py-3.5 text-white hover:bg-accent transition">
+            <i class="fa-solid fa-microchip"></i>LINH KIỆN PC <i class="fa-solid fa-chevron-down text-[10px] ml-0.5"></i>
+          </a>
+          <ul class="dropdown absolute left-0 top-full w-64 bg-white text-slate-700 normal-case tracking-normal font-semibold rounded-b-lg shadow-2xl border-t-4 border-accent overflow-hidden z-50">
+            <li><a href="category.html?cat=linh-kien&amp;sub=cpu" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 hover:text-accent transition"><i class="fa-solid fa-microchip w-5 text-primary-light"></i>Vi xử lý (CPU)</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=mainboard" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 hover:text-accent transition"><i class="fa-solid fa-server w-5 text-primary-light"></i>Bo mạch chủ (Mainboard)</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=ram" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 hover:text-accent transition"><i class="fa-solid fa-memory w-5 text-primary-light"></i>Bộ nhớ RAM</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=vga" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 hover:text-accent transition"><i class="fa-solid fa-display w-5 text-primary-light"></i>Card màn hình (VGA)</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=storage" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 hover:text-accent transition"><i class="fa-solid fa-hard-drive w-5 text-primary-light"></i>Ổ cứng SSD/HDD</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=nguon-case-tan" class="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 hover:text-accent transition"><i class="fa-solid fa-fan w-5 text-primary-light"></i>Nguồn / Case / Tản nhiệt</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
+
+    <!-- Menu mobile (xổ xuống) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-primary-dark border-t border-white/10 max-h-[70vh] overflow-y-auto">
+      <ul class="text-sm font-bold uppercase text-white divide-y divide-white/10">
+        <li><a href="category.html?cat=pc-gaming" class="flex items-center gap-3 px-5 py-3.5 hover:bg-accent"><i class="fa-solid fa-gamepad w-5"></i>PC GAMING</a></li>
+        <li><a href="category.html?cat=pc-do-hoa" class="flex items-center gap-3 px-5 py-3.5 hover:bg-accent"><i class="fa-solid fa-palette w-5"></i>PC ĐỒ HỌA / VĂN PHÒNG</a></li>
+        <li><a href="category.html?cat=laptop" class="flex items-center gap-3 px-5 py-3.5 hover:bg-accent"><i class="fa-solid fa-laptop w-5"></i>LAPTOP</a></li>
+        <li><a href="category.html?cat=man-hinh" class="flex items-center gap-3 px-5 py-3.5 hover:bg-accent"><i class="fa-solid fa-tv w-5"></i>MÀN HÌNH MÁY TÍNH</a></li>
+        <li>
+          <a href="category.html?cat=linh-kien" class="flex items-center gap-3 px-5 py-3.5 hover:bg-accent"><i class="fa-solid fa-microchip w-5"></i>LINH KIỆN PC</a>
+          <ul class="bg-primary normal-case font-semibold text-slate-200">
+            <li><a href="category.html?cat=linh-kien&amp;sub=cpu" class="block pl-14 pr-5 py-2.5 hover:text-accent">Vi xử lý (CPU)</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=mainboard" class="block pl-14 pr-5 py-2.5 hover:text-accent">Bo mạch chủ (Mainboard)</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=ram" class="block pl-14 pr-5 py-2.5 hover:text-accent">Bộ nhớ RAM</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=vga" class="block pl-14 pr-5 py-2.5 hover:text-accent">Card màn hình (VGA)</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=storage" class="block pl-14 pr-5 py-2.5 hover:text-accent">Ổ cứng SSD/HDD</a></li>
+            <li><a href="category.html?cat=linh-kien&amp;sub=nguon-case-tan" class="block pl-14 pr-5 py-2.5 hover:text-accent">Nguồn / Case / Tản nhiệt</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </header>
 
+  <!-- ================= MAIN ================= -->
+  <main class="max-w-7xl mx-auto px-4 py-5 md:py-6 space-y-8">
 
-  <!-- ==========================================
-       PHẦN THÂN TRANG CHỦ (PLACEHOLDER CHỜ DỮ LIỆU SẢN PHẨM)
-       ========================================== -->
-  <main class="flex-grow container mx-auto px-4 max-w-7xl py-8">
-    <div class="bg-gradient-to-r from-primary to-primary-light rounded-2xl p-8 md:p-12 text-white shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="space-y-4 max-w-xl">
-        <span class="bg-accent text-white text-xs font-bold uppercase px-3 py-1 rounded-full tracking-wider">Khuyến mãi đặc biệt</span>
-        <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">
-          Chiến Mọi Tựa Game Cùng <span class="text-yellow-400">Nguyên Khang PC</span>
-        </h1>
-        <p class="text-blue-100 text-sm md:text-base">
-          Tối ưu hiệu năng trên từng đồng chi phí. Cam kết linh kiện chính hãng, hỗ trợ trả góp nhanh chóng và giao lắp tận nơi tại TP.HCM.
-        </p>
-        <div class="pt-2 flex flex-wrap gap-3">
-          <a href="category.html?cat=pc-gaming" class="bg-accent hover:bg-accent-hover text-white font-bold px-6 py-3 rounded-lg shadow-lg transition flex items-center space-x-2">
-            <span>XEM CẤU HÌNH PC HOT</span>
-            <i class="fa-solid fa-arrow-right"></i>
-          </a>
-          <a href="tel:0708715678" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-lg border border-white/30 transition">
-            Gọi tư vấn: 0708.715.678
-          </a>
+    <!-- ===== HERO BANNER + CAM KẾT ===== -->
+    <section aria-label="Giới thiệu">
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-dark via-primary to-primary-light text-white shadow-xl">
+        <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-accent/20 blur-3xl"></div>
+        <div class="absolute -left-16 -bottom-24 w-72 h-72 rounded-full bg-sky-400/20 blur-3xl"></div>
+        <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px); background-size: 38px 38px;"></div>
+
+        <div class="relative grid md:grid-cols-2 gap-6 items-center p-6 md:p-10 lg:p-12">
+          <div>
+            <span class="inline-flex items-center gap-2 bg-accent text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow">
+              <i class="fa-solid fa-microchip"></i>Build PC theo nhu cầu
+            </span>
+            <h1 class="mt-4 text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
+              Build PC Gaming <br class="hidden md:block">
+              <span class="text-accent">Cấu hình mạnh</span> - Giá cực tốt
+            </h1>
+            <p class="mt-4 text-sky-100 text-sm md:text-base max-w-xl">
+              Nguyên Khang PC chuyên PC Gaming, PC đồ họa, laptop, màn hình và linh kiện chính hãng. Tư vấn cấu hình đúng nhu cầu, đúng ngân sách - bảo hành rõ ràng, giao lắp tận nơi TP.HCM.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="category.html?cat=pc-gaming" class="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white font-bold px-6 py-3 rounded-lg shadow-lg shadow-accent/30 transition">
+                <i class="fa-solid fa-bolt"></i>Xem PC Gaming
+              </a>
+              <a href="https://zalo.me/0708715678" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-6 py-3 rounded-lg backdrop-blur transition">
+                <i class="fa-solid fa-comments"></i>Nhận tư vấn miễn phí
+              </a>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs md:text-sm text-sky-100 font-medium">
+              <span><i class="fa-solid fa-circle-check text-accent mr-1.5"></i>Linh kiện chính hãng</span>
+              <span><i class="fa-solid fa-circle-check text-accent mr-1.5"></i>Test máy trước khi giao</span>
+              <span><i class="fa-solid fa-circle-check text-accent mr-1.5"></i>Hỗ trợ kỹ thuật trọn đời</span>
+            </div>
+          </div>
+
+          <div class="hidden md:flex justify-center">
+            <div class="relative float-y">
+              <div class="w-72 h-72 lg:w-80 lg:h-80 rounded-3xl bg-gradient-to-br from-white/15 to-white/5 border border-white/20 backdrop-blur flex items-center justify-center shadow-2xl">
+                <i class="fa-solid fa-computer text-[9rem] lg:text-[10rem] text-white/90"></i>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="text-center">
-        <div class="w-48 h-48 md:w-60 md:h-60 rounded-2xl bg-white/10 backdrop-blur flex flex-col items-center justify-center border border-white/20 p-4">
-          <i class="fa-solid fa-computer text-6xl text-yellow-400 mb-3"></i>
-          <p class="text-xs text-blue-200">Khung chờ hiển thị Banner & Danh sách sản phẩm từ <code>js/data.js</code></p>
+
+      <!-- 4 ô cam kết dịch vụ -->
+      <div class="mt-4 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        <div class="bg-white rounded-xl p-4 flex items-center gap-3 shadow-sm border border-slate-200 hover:border-accent hover:shadow-md transition">
+          <span class="w-12 h-12 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl"><i class="fa-solid fa-headset"></i></span>
+          <div class="leading-snug">
+            <div class="font-bold text-sm text-primary">Tư vấn cấu hình tối ưu</div>
+            <div class="text-xs text-slate-500">Đúng nhu cầu, đúng ngân sách</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-4 flex items-center gap-3 shadow-sm border border-slate-200 hover:border-accent hover:shadow-md transition">
+          <span class="w-12 h-12 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl"><i class="fa-solid fa-certificate"></i></span>
+          <div class="leading-snug">
+            <div class="font-bold text-sm text-primary">Linh kiện chính hãng</div>
+            <div class="text-xs text-slate-500">Bảo hành đầy đủ từ hãng</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-4 flex items-center gap-3 shadow-sm border border-slate-200 hover:border-accent hover:shadow-md transition">
+          <span class="w-12 h-12 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl"><i class="fa-solid fa-credit-card"></i></span>
+          <div class="leading-snug">
+            <div class="font-bold text-sm text-primary">Hỗ trợ trả góp</div>
+            <div class="text-xs text-slate-500">Thủ tục nhanh, duyệt trong ngày</div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-4 flex items-center gap-3 shadow-sm border border-slate-200 hover:border-accent hover:shadow-md transition">
+          <span class="w-12 h-12 shrink-0 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xl"><i class="fa-solid fa-truck-fast"></i></span>
+          <div class="leading-snug">
+            <div class="font-bold text-sm text-primary">Giao lắp tận nơi</div>
+            <div class="text-xs text-slate-500">Nhanh chóng trong TP.HCM</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION 1: PC GAMING NỔI BẬT ===== -->
+    <section aria-label="PC Gaming nổi bật">
+      <div class="flex items-stretch bg-primary rounded-t-xl overflow-hidden shadow">
+        <div class="flex-1 flex items-center gap-3 px-4 md:px-5 py-3">
+          <i class="fa-solid fa-gamepad text-accent text-xl"></i>
+          <h2 class="text-white font-extrabold uppercase text-sm md:text-lg tracking-wide">PC Gaming Nổi Bật</h2>
+        </div>
+        <a href="category.html?cat=pc-gaming" class="flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-xs md:text-sm font-bold px-4 md:px-6 transition" style="clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);">
+          <span class="pl-2">Xem tất cả</span><i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="h-1 bg-gradient-to-r from-accent via-orange-400 to-transparent"></div>
+
+      <div id="home-pc-gaming" class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-3 md:p-4 rounded-b-xl shadow-sm border border-t-0 border-slate-200">
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=pc-gaming-1" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-computer text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=pc-gaming-1" class="hover:text-accent transition">PC Gaming NK Starter - i5-12400F / RTX 3060 / 16GB / SSD 512GB</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">i5-12400F</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">RTX 3060</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">16GB</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">15.990.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="pc-gaming-1" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=pc-gaming-1" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=pc-gaming-2" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-computer text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=pc-gaming-2" class="hover:text-accent transition">PC Gaming NK Pro - i5-13400F / RTX 4060 8GB / 16GB / SSD 512GB</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">i5-13400F</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">RTX 4060</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">16GB</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">19.490.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="pc-gaming-2" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=pc-gaming-2" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=pc-gaming-3" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-computer text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=pc-gaming-3" class="hover:text-accent transition">PC Gaming NK Elite - i7-13700F / RTX 4070 12GB / 32GB / SSD 1TB</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">i7-13700F</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">RTX 4070</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">32GB</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">31.900.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="pc-gaming-3" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=pc-gaming-3" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=pc-gaming-4" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-computer text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=pc-gaming-4" class="hover:text-accent transition">PC Gaming NK Ultra - i7-14700F / RTX 4070 Super / 32GB / SSD 1TB</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">i7-14700F</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">RTX 4070S</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">32GB</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">38.500.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="pc-gaming-4" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=pc-gaming-4" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== SECTION 2: PC ĐỒ HỌA & VĂN PHÒNG ===== -->
+    <section aria-label="PC đồ họa và văn phòng">
+      <div class="flex items-stretch bg-primary rounded-t-xl overflow-hidden shadow">
+        <div class="flex-1 flex items-center gap-3 px-4 md:px-5 py-3">
+          <i class="fa-solid fa-palette text-accent text-xl"></i>
+          <h2 class="text-white font-extrabold uppercase text-sm md:text-lg tracking-wide">PC Đồ Họa &amp; Văn Phòng</h2>
+        </div>
+        <a href="category.html?cat=pc-do-hoa" class="flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-xs md:text-sm font-bold px-4 md:px-6 transition" style="clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);">
+          <span class="pl-2">Xem tất cả</span><i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="h-1 bg-gradient-to-r from-accent via-orange-400 to-transparent"></div>
+
+      <div id="home-pc-dohoa" class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-3 md:p-4 rounded-b-xl shadow-sm border border-t-0 border-slate-200">
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=pc-do-hoa-1" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-desktop text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=pc-do-hoa-1" class="hover:text-accent transition">PC Văn Phòng Plus - i5-12400 / 16GB / SSD 512GB / Intel UHD</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">i5-12400</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">UHD 730</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">16GB</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">9.490.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="pc-do-hoa-1" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=pc-do-hoa-1" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=pc-do-hoa-2" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-desktop text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=pc-do-hoa-2" class="hover:text-accent transition">PC Đồ Họa NK Design - Ryzen 5 5600 / RTX 3050 / 32GB / SSD 1TB</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">Ryzen 5 5600</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">RTX 3050</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">32GB</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">14.290.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="pc-do-hoa-2" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=pc-do-hoa-2" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=pc-do-hoa-3" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-desktop text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=pc-do-hoa-3" class="hover:text-accent transition">PC Workstation NK Studio - i7-13700 / RTX 4060 Ti / 64GB / SSD 2TB</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">i7-13700</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">RTX 4060 Ti</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">64GB</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">33.900.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="pc-do-hoa-3" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=pc-do-hoa-3" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=pc-do-hoa-4" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-desktop text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=pc-do-hoa-4" class="hover:text-accent transition">PC Văn Phòng Basic - i3-12100 / 8GB / SSD 256GB / Intel UHD</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">i3-12100</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">UHD 730</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">8GB</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">6.190.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="pc-do-hoa-4" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=pc-do-hoa-4" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== SECTION 3: MÀN HÌNH GIÁ TỐT ===== -->
+    <section aria-label="Màn hình giá tốt">
+      <div class="flex items-stretch bg-primary rounded-t-xl overflow-hidden shadow">
+        <div class="flex-1 flex items-center gap-3 px-4 md:px-5 py-3">
+          <i class="fa-solid fa-tv text-accent text-xl"></i>
+          <h2 class="text-white font-extrabold uppercase text-sm md:text-lg tracking-wide">Màn Hình Giá Tốt</h2>
+        </div>
+        <a href="category.html?cat=man-hinh" class="flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-xs md:text-sm font-bold px-4 md:px-6 transition" style="clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);">
+          <span class="pl-2">Xem tất cả</span><i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="h-1 bg-gradient-to-r from-accent via-orange-400 to-transparent"></div>
+
+      <div id="home-man-hinh" class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-3 md:p-4 rounded-b-xl shadow-sm border border-t-0 border-slate-200">
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=man-hinh-1" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-tv text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=man-hinh-1" class="hover:text-accent transition">Màn hình LG 24 inch FHD IPS 75Hz viền mỏng</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">24"</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">FHD IPS</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">75Hz</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">2.490.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="man-hinh-1" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=man-hinh-1" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=man-hinh-2" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-tv text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=man-hinh-2" class="hover:text-accent transition">Màn hình Gaming ASUS TUF 27 inch 2K IPS 165Hz 1ms</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">27"</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">2K IPS</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">165Hz</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">6.290.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="man-hinh-2" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=man-hinh-2" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=man-hinh-3" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-tv text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=man-hinh-3" class="hover:text-accent transition">Màn hình Samsung Odyssey G5 27 inch 2K VA 144Hz cong</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">27" cong</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">2K VA</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">144Hz</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">5.990.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="man-hinh-3" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=man-hinh-3" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=man-hinh-4" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-tv text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=man-hinh-4" class="hover:text-accent transition">Màn hình Dell 24 inch FHD IPS 100Hz chống chói</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">24"</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">FHD IPS</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">100Hz</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">2.890.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="man-hinh-4" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=man-hinh-4" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== SECTION 4: LINH KIỆN PC HOT ===== -->
+    <section aria-label="Linh kiện PC hot">
+      <div class="flex items-stretch bg-primary rounded-t-xl overflow-hidden shadow">
+        <div class="flex-1 flex items-center gap-3 px-4 md:px-5 py-3">
+          <i class="fa-solid fa-microchip text-accent text-xl"></i>
+          <h2 class="text-white font-extrabold uppercase text-sm md:text-lg tracking-wide">Linh Kiện PC Hot</h2>
+        </div>
+        <a href="category.html?cat=linh-kien" class="flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-xs md:text-sm font-bold px-4 md:px-6 transition" style="clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%);">
+          <span class="pl-2">Xem tất cả</span><i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+      <div class="h-1 bg-gradient-to-r from-accent via-orange-400 to-transparent"></div>
+
+      <div id="home-linh-kien" class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white p-3 md:p-4 rounded-b-xl shadow-sm border border-t-0 border-slate-200">
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=linh-kien-1" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-microchip text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=linh-kien-1" class="hover:text-accent transition">CPU Intel Core i5-13400F (up to 4.6GHz, 10 nhân 16 luồng)</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">10 nhân</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">LGA1700</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">4.6GHz</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">4.390.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="linh-kien-1" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=linh-kien-1" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=linh-kien-2" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-display text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=linh-kien-2" class="hover:text-accent transition">Card màn hình VGA GeForce RTX 4060 8GB GDDR6 2 Fan</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">RTX 4060</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">8GB GDDR6</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">DLSS 3</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">8.290.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="linh-kien-2" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=linh-kien-2" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=linh-kien-3" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-memory text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=linh-kien-3" class="hover:text-accent transition">RAM Kingston Fury Beast 16GB (2x8GB) DDR4 3200MHz</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">16GB</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">DDR4</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">3200MHz</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">1.090.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="linh-kien-3" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=linh-kien-3" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card relative flex flex-col bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <a href="product.html?id=linh-kien-4" class="block aspect-square bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+            <i class="fa-solid fa-hard-drive text-6xl md:text-7xl text-primary-light/70"></i>
+          </a>
+          <div class="flex flex-col flex-1 p-3">
+            <h3 class="text-[13px] md:text-sm font-semibold text-slate-800 leading-snug line-clamp-2 min-h-[2.5rem]">
+              <a href="product.html?id=linh-kien-4" class="hover:text-accent transition">Ổ cứng SSD Samsung 980 500GB M.2 NVMe PCIe 3.0</a>
+            </h3>
+            <div class="mt-2 flex flex-wrap gap-1.5">
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">500GB</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">NVMe</span>
+              <span class="text-[10px] font-semibold bg-sky-50 text-primary-light border border-sky-200 rounded px-1.5 py-0.5">3.100MB/s</span>
+            </div>
+            <div class="mt-auto pt-3">
+              <div class="text-base md:text-lg font-extrabold text-accent">1.190.000đ</div>
+              <div class="mt-2 grid grid-cols-5 gap-1.5">
+                <button type="button" data-add-to-cart="linh-kien-4" class="col-span-3 bg-accent hover:bg-accent-hover text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition"><i class="fa-solid fa-cart-plus mr-1"></i>Thêm vào giỏ</button>
+                <a href="product.html?id=linh-kien-4" class="col-span-2 text-center bg-primary hover:bg-primary-light text-white text-[11px] md:text-xs font-bold py-2 rounded-lg transition">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-primary-dark text-slate-300 mt-10">
+    <div class="h-1 bg-gradient-to-r from-accent via-orange-400 to-accent"></div>
+
+    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Cột 1: Thông tin cửa hàng & Bản đồ -->
+      <div>
+        <h3 class="text-white text-lg font-extrabold uppercase tracking-wide mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-store text-accent"></i>NGUYÊN KHANG PC
+        </h3>
+        <ul class="space-y-3 text-sm">
+          <li class="flex gap-3">
+            <i class="fa-solid fa-location-dot text-accent mt-1 w-4"></i>
+            <span>458/70 Đường 3 Tháng 2, Phường Hòa Hưng (Quận 10), TP. Hồ Chí Minh</span>
+          </li>
+          <li class="flex gap-3">
+            <i class="fa-solid fa-phone text-accent mt-1 w-4"></i>
+            <span>Hotline / Zalo: <a href="tel:0708715678" class="font-bold text-white hover:text-accent transition">0708.715.678</a></span>
+          </li>
+        </ul>
+        <div class="mt-4 rounded-xl overflow-hidden border border-white/10 shadow-lg">
+          <iframe
+            title="Bản đồ Nguyên Khang PC"
+            src="https://www.google.com/maps?q=458%2F70%20%C4%90%C6%B0%E1%BB%9Dng%203%20Th%C3%A1ng%202%2C%20H%C3%B2a%20H%C6%B0ng%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh&output=embed"
+            width="100%" height="220" style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <!-- Cột 2: Hỗ trợ khách hàng -->
+      <div>
+        <h3 class="text-white text-lg font-extrabold uppercase tracking-wide mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-headset text-accent"></i>Hỗ trợ khách hàng
+        </h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Chính sách vận chuyển &amp; giao nhận</a></li>
+          <li><a href="#" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Chính sách đổi trả &amp; hoàn tiền linh kiện lỗi</a></li>
+          <li><a href="#" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Hướng dẫn thanh toán &amp; mua PC trả góp</a></li>
+          <li><a href="#" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Quy định bảo hành chính hãng</a></li>
+        </ul>
+
+        <div class="mt-6 bg-white/5 border border-white/10 rounded-xl p-4 text-sm">
+          <div class="font-bold text-white mb-1"><i class="fa-solid fa-clock text-accent mr-2"></i>Cần tư vấn cấu hình?</div>
+          <p class="text-slate-400">Gọi hoặc nhắn Zalo, Nguyên Khang PC sẽ lên cấu hình phù hợp nhu cầu và ngân sách của bạn.</p>
+        </div>
+      </div>
+
+      <!-- Cột 3: Kết nối Facebook -->
+      <div class="md:col-span-2 lg:col-span-1">
+        <h3 class="text-white text-lg font-extrabold uppercase tracking-wide mb-4 flex items-center gap-2">
+          <i class="fa-brands fa-facebook text-accent"></i>Kết nối Facebook
+        </h3>
+
+        <div class="bg-gradient-to-br from-primary-light to-primary rounded-xl p-5 border border-white/10 shadow-lg">
+          <div class="flex items-center gap-3">
+            <span class="w-12 h-12 rounded-full bg-[#1877f2] text-white flex items-center justify-center text-2xl"><i class="fa-brands fa-facebook-f"></i></span>
+            <div class="leading-tight">
+              <div class="text-white font-extrabold">Nguyên Khang PC</div>
+              <div class="text-xs text-sky-200">Cập nhật khuyến mãi &amp; build PC mới mỗi ngày</div>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <a href="https://www.facebook.com/nguyenkhang0946102477" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-[#1877f2] hover:bg-[#1466d6] text-white text-sm font-bold py-2.5 rounded-lg transition">
+              <i class="fa-brands fa-facebook"></i>Xem Facebook
+            </a>
+            <a href="https://zalo.me/0708715678" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold py-2.5 rounded-lg transition">
+              <i class="fa-solid fa-comment-dots"></i>Nhắn Zalo
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-4 rounded-xl overflow-hidden border border-white/10 bg-white">
+          <iframe
+            title="Facebook Nguyên Khang PC"
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnguyenkhang0946102477&tabs=timeline&width=340&height=220&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
+            width="100%" height="220" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+            allowfullscreen="true" loading="lazy"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
         </div>
       </div>
     </div>
-  </main>
 
-
-  <!-- ==========================================
-       2. PHẦN CHÂN TRANG (FOOTER - 3 CỘT)
-       ========================================== -->
-  <footer class="bg-primary-dark text-gray-300 pt-12 pb-6 border-t-4 border-accent mt-12">
-    <div class="container mx-auto px-4 max-w-7xl">
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-blue-900/60">
-        
-        <!-- CỘT 1: Thông tin shop Nguyên Khang PC + Bản đồ Google Maps -->
-        <div class="space-y-3">
-          <h3 class="text-white text-lg font-extrabold tracking-wide uppercase flex items-center space-x-2">
-            <span class="w-1.5 h-5 bg-accent inline-block rounded"></span>
-            <span>NGUYÊN KHANG PC</span>
-          </h3>
-          <p class="text-sm text-gray-400 leading-relaxed">
-            Chuyên cung cấp PC Gaming, Máy tính đồ họa Workstation, Laptop và Linh kiện máy tính chính hãng với mức giá cạnh tranh nhất.
-          </p>
-          <ul class="space-y-2.5 text-sm pt-1">
-            <li class="flex items-start space-x-2.5">
-              <i class="fa-solid fa-location-dot text-accent mt-1"></i>
-              <span><strong>Địa chỉ:</strong> 458/70 Đường 3 Tháng 2, Phường Hòa Hưng (Quận 10), TP. Hồ Chí Minh</span>
-            </li>
-            <li class="flex items-center space-x-2.5">
-              <i class="fa-solid fa-phone-volume text-accent"></i>
-              <span><strong>Hotline / Zalo:</strong> <a href="tel:0708715678" class="text-yellow-400 font-bold hover:underline">0708.715.678</a></span>
-            </li>
-            <li class="flex items-center space-x-2.5">
-              <i class="fa-solid fa-envelope text-accent"></i>
-              <span><strong>Email:</strong> <a href="mailto:vovikha14@gmail.com" class="hover:text-white">vovikha14@gmail.com</a></span>
-            </li>
-          </ul>
-
-          <!-- Nhúng Google Maps vị trí 458/70 Đường 3 Tháng 2 -->
-          <div class="pt-2">
-            <iframe 
-              src="https://www.google.com/maps?q=458/70+Đường+3+Tháng+2,+Hòa+Hưng,+Hồ+Chí+Minh&output=embed" 
-              width="100%" 
-              height="150" 
-              style="border:0; border-radius: 8px;" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Bản đồ Nguyên Khang PC">
-            </iframe>
-          </div>
-        </div>
-
-        <!-- CỘT 2: Danh mục hỗ trợ khách hàng -->
-        <div class="space-y-3">
-          <h3 class="text-white text-lg font-extrabold tracking-wide uppercase flex items-center space-x-2">
-            <span class="w-1.5 h-5 bg-accent inline-block rounded"></span>
-            <span>HỖ TRỢ KHÁCH HÀNG</span>
-          </h3>
-          <ul class="space-y-3 text-sm pt-1">
-            <li>
-              <a href="#chinh-sach-van-chuyen" class="flex items-center space-x-2 hover:text-accent transition">
-                <i class="fa-solid fa-chevron-right text-xs text-accent"></i>
-                <span>Chính sách vận chuyển & giao nhận</span>
-              </a>
-            </li>
-            <li>
-              <a href="#chinh-sach-doi-tra" class="flex items-center space-x-2 hover:text-accent transition">
-                <i class="fa-solid fa-chevron-right text-xs text-accent"></i>
-                <span>Chính sách đổi trả & hoàn tiền linh kiện lỗi</span>
-              </a>
-            </li>
-            <li>
-              <a href="#huong-dan-tra-gop" class="flex items-center space-x-2 hover:text-accent transition">
-                <i class="fa-solid fa-chevron-right text-xs text-accent"></i>
-                <span>Hướng dẫn thanh toán & mua PC trả góp</span>
-              </a>
-            </li>
-            <li>
-              <a href="#chinh-sach-bao-hanh" class="flex items-center space-x-2 hover:text-accent transition">
-                <i class="fa-solid fa-chevron-right text-xs text-accent"></i>
-                <span>Quy định bảo hành chính hãng tại shop</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="bg-primary p-4 rounded-lg border border-blue-800/60 mt-4 space-y-2 text-xs">
-            <div class="font-bold text-yellow-400 uppercase"><i class="fa-solid fa-bolt mr-1"></i> Hỗ trợ kỹ thuật trực tiếp</div>
-            <p class="text-gray-300">Cài đặt Windows, phần mềm đồ họa và vệ sinh PC miễn phí cho khách hàng mua máy tại Nguyên Khang PC.</p>
-          </div>
-        </div>
-
-        <!-- CỘT 3: Khung Facebook Nguyên Khang PC -->
-        <div class="space-y-3">
-          <h3 class="text-white text-lg font-extrabold tracking-wide uppercase flex items-center space-x-2">
-            <span class="w-1.5 h-5 bg-accent inline-block rounded"></span>
-            <span>KẾT NỐI FACEBOOK</span>
-          </h3>
-          <p class="text-sm text-gray-400">
-            Theo dõi Facebook chính thức của Nguyên Khang PC để cập nhật cấu hình mới và các kèo linh kiện giá tốt mỗi ngày:
-          </p>
-
-          <!-- Card kết nối trực tiếp (Luôn hiển thị đẹp kể cả khi link là Facebook cá nhân hay Fanpage) -->
-          <div class="bg-primary p-4 rounded-xl border border-blue-800/80 shadow-lg space-y-3">
-            <div class="flex items-center space-x-3">
-              <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white text-2xl shadow">
-                <i class="fa-brands fa-facebook-f"></i>
-              </div>
-              <div>
-                <h4 class="text-white font-bold text-base leading-tight">Nguyên Khang PC</h4>
-                <span class="text-xs text-blue-300">@nguyenkhang0946102477</span>
-              </div>
-            </div>
-            <div class="flex gap-2 pt-1">
-              <a 
-                href="https://www.facebook.com/nguyenkhang0946102477" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="flex-1 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold py-2.5 px-3 rounded-lg text-center transition flex items-center justify-center space-x-1.5 shadow"
-              >
-                <i class="fa-brands fa-facebook"></i>
-                <span>Xem Trang Facebook</span>
-              </a>
-              <a 
-                href="https://zalo.me/0708715678" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="bg-accent hover:bg-accent-hover text-white text-xs font-bold py-2.5 px-3 rounded-lg text-center transition flex items-center justify-center space-x-1"
-              >
-                <i class="fa-solid fa-comment-dots"></i>
-                <span>Nhắn Zalo</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Khung nhúng Facebook Plugin (Tự động hiển thị nếu URL là Fanpage công khai) -->
-          <div class="bg-white rounded-lg overflow-hidden shadow-inner hidden sm:block">
-            <iframe 
-              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnguyenkhang0946102477&tabs&width=340&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true" 
-              width="100%" 
-              height="130" 
-              style="border:none;overflow:hidden" 
-              scrolling="no" 
-              frameborder="0" 
-              allowfullscreen="true" 
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              title="Facebook Nguyên Khang PC">
-            </iframe>
-          </div>
-        </div>
-
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-400">
+        <span>&copy; 2026 Nguyên Khang PC. Bảo lưu mọi quyền.</span>
+        <span>Bảo hành chính hãng &bull; Giao nhanh TP.HCM &bull; Hỗ trợ trả góp</span>
       </div>
-
-      <!-- Bản quyền dưới cùng -->
-      <div class="pt-6 text-center text-xs text-gray-400 flex flex-col sm:flex-row justify-between items-center gap-2">
-        <p>© 2026 <strong>Nguyên Khang PC</strong>. All rights reserved.</p>
-        <p>Địa chỉ: 458/70 Đường 3 Tháng 2, Phường Hòa Hưng, TP.HCM | Hotline: 0708.715.678</p>
-      </div>
-
     </div>
   </footer>
 
-
-  <!-- ==========================================
-       3. NÚT TIẾP CẬN NHANH (STICKY BUTTONS)
-       ========================================== -->
-  <div class="fixed bottom-6 right-5 z-50 flex flex-col space-y-3.5">
-    
-    <!-- Nút 2: Chat Zalo (Màu xanh dương) -->
-    <a 
-      href="https://zalo.me/0708715678" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      class="group flex items-center justify-end"
-      title="Chat Zalo với Nguyên Khang PC"
-    >
-      <span class="mr-2.5 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 hidden sm:inline-block">
-        Chat Zalo tư vấn ngay
-      </span>
-      <div class="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex flex-col items-center justify-center shadow-xl border-2 border-white animate-shake-periodic">
-        <span class="font-black text-[13px] tracking-tighter leading-none">Zalo</span>
-      </div>
+  <!-- ================= NÚT TIẾP CẬN NHANH CỐ ĐỊNH ================= -->
+  <div class="fixed bottom-6 right-5 z-50 flex flex-col gap-4">
+    <a href="https://zalo.me/0708715678" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo"
+       class="fab fab-zalo w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-xl shadow-blue-600/40">
+      <span class="text-[13px] font-black tracking-tight">Zalo</span>
     </a>
-
-    <!-- Nút 1: Gọi điện ngay (Màu xanh lá) -->
-    <a 
-      href="tel:0708715678" 
-      class="group flex items-center justify-end"
-      title="Gọi ngay 0708.715.678"
-    >
-      <span class="mr-2.5 bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 hidden sm:inline-block">
-        Hotline: 0708.715.678
-      </span>
-      <div class="w-12 h-12 rounded-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center shadow-xl border-2 border-white pulse-green animate-shake-periodic">
-        <i class="fa-solid fa-phone-volume text-lg"></i>
-      </div>
+    <a href="tel:0708715678" aria-label="Gọi ngay"
+       class="fab fab-call w-14 h-14 rounded-full bg-green-500 text-white flex items-center justify-center shadow-xl shadow-green-500/40">
+      <i class="fa-solid fa-phone text-xl"></i>
     </a>
-
   </div>
 
-  <!-- Nhúng file dữ liệu và xử lý logic -->
+  <!-- Menu mobile toggle -->
+  <script>
+    (function () {
+      var btn = document.getElementById('mobile-menu-btn');
+      var menu = document.getElementById('mobile-menu');
+      if (btn && menu) {
+        btn.addEventListener('click', function () {
+          menu.classList.toggle('hidden');
+          var icon = btn.querySelector('i');
+          if (icon) {
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+          }
+        });
+      }
+    })();
+  </script>
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
