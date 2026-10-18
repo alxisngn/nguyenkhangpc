@@ -831,11 +831,8 @@
   // 8. KHỞI TẠO SỰ KIỆN TOÀN CỤC KHI DOM LOAD XONG
   // =========================================================================
 
-  document.addEventListener("DOMContentLoaded", function () {
-    // 1. Luôn cập nhật số lượng giỏ hàng trên Header ở mọi trang
-    updateCartCount();
-
-    // 2. Event delegation cho mọi nút [data-add-to-cart]
+  document.addEventListener("DOMContentLoaded", async function () {
+    // 1. Event delegation cho mọi nút [data-add-to-cart] (Gắn ngay lập tức)
     document.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-add-to-cart]");
       if (!btn) return;
@@ -846,7 +843,13 @@
       }
     });
 
-    // 3. Khởi tạo các trang tương ứng nếu phần tử tồn tại
+    // 2. Nếu có cấu hình Google Sheets CSV thì đợi tải dữ liệu mới nhất về trước
+    if (typeof syncProductsFromGoogleSheet === "function") {
+      await syncProductsFromGoogleSheet();
+    }
+
+    // 3. Cập nhật số lượng giỏ hàng và render các trang sau khi dữ liệu đã sẵn sàng
+    updateCartCount();
     initHomePage();
     initCategoryPage();
     initProductPage();

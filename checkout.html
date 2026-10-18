@@ -327,5 +327,114 @@
 
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+<!-- Xử lý gửi đơn hàng về Google Sheets & Gmail -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var checkoutForm = document.getElementById("checkout-form");
+      if (!checkoutForm) return;
+
+      checkoutForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var name = (document.getElementById("customer-name") ? document.getElementById("customer-name").value : "").trim();
+        var phone = (document.getElementById("customer-phone") ? document.getElementById("customer-phone").value : "").trim();
+        var address = (document.getElementById("customer-address") ? document.getElementById("customer-address").value : "").trim();
+        var note = (document.getElementById("customer-note") ? document.getElementById("customer-note").value : "").trim();
+
+        // Đọc giỏ hàng từ localStorage key "nkpc_cart"
+        var cartRaw = localStorage.getItem("nkpc_cart");
+        var cart = [];
+        try {
+          cart = cartRaw ? JSON.parse(cartRaw) : [];
+        } catch (err) {
+          cart = [];
+        }
+
+        if (!Array.isArray(cart) || cart.length === 0) {
+          alert("Giỏ hàng của bạn đang trống! Vui lòng chọn linh kiện trước khi đặt hàng.");
+          window.location.href = "category.html";
+          return;
+        }
+
+        // Lấy tên và giá chính xác từ kho PRODUCTS (trong js/data.js)
+        var orderItems = [];
+        var grandTotal = 0;
+
+        for (var i = 0; i < cart.length; i++) {
+          var item = cart[i];
+          var product = null;
+          if (typeof PRODUCTS !== "undefined" && Array.isArray(PRODUCTS)) {
+            for (var p = 0; p < PRODUCTS.length; p++) {
+              if (PRODUCTS[p].id === item.id) {
+                product = PRODUCTS[p];
+                break;
+              }
+            }
+          }
+
+          var pName = product ? product.name : ("Mã SP: " + item.id);
+          var pPrice = product ? Number(product.price) : 0;
+          var pQty = Number(item.qty) || 1;
+
+          orderItems.push({
+            name: pName,
+            price: pPrice,
+            qty: pQty
+          });
+
+          grandTotal += pPrice * pQty;
+        }
+
+        var orderId = "NKPC-" + Math.floor(100000 + Math.random() * 900000);
+
+        var payload = {
+          orderId: orderId,
+          name: name,
+          phone: phone,
+          address: address,
+          note: note,
+          items: orderItems,
+          total: grandTotal
+        };
+
+        var submitBtn = checkoutForm.querySelector("button[type='submit']");
+        var originalBtnHtml = submitBtn ? submitBtn.innerHTML : "Xác Nhận Đặt Hàng";
+        if (submitBtn) {
+          submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Đang gửi đơn hàng...';
+          submitBtn.disabled = true;
+        }
+
+        // DÁN ĐƯỜNG LINK WEB APP URL BẠN VỪA COPY Ở BƯỚC 2 VÀO DƯỚI ĐÂY
+        var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBb2sN97Oo46N5vpG_vktT_xrhMN7q3wDAPhnhlcXFNCMN5ZO7dTHMGO9N2-TPlF8k/exec";
+
+        fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors", // Bắt buộc dùng no-cors cho Google Apps Script
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(function () {
+          // Xóa giỏ hàng sau khi đặt thành công
+          localStorage.removeItem("nkpc_cart");
+          if (typeof updateCartCount === "function") {
+            updateCartCount();
+          }
+
+          alert("Đặt hàng thành công! Mã đơn của bạn là: " + orderId + ". Nguyên Khang PC sẽ liên hệ sớm nhất.");
+          window.location.href = "index.html";
+        })
+        .catch(function (error) {
+          console.error("Lỗi gửi đơn:", error);
+          alert("Có lỗi khi gửi đơn hàng. Vui lòng gọi trực tiếp hotline 0708.715.678 để được hỗ trợ chốt đơn ngay!");
+          if (submitBtn) {
+            submitBtn.innerHTML = originalBtnHtml;
+            submitBtn.disabled = false;
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

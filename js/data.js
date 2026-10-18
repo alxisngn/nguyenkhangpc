@@ -15,7 +15,7 @@ const PRODUCTS = [
     name: "PC Gaming NK Starter - i5-12400F / RTX 3060 / 16GB / SSD 512GB",
     cat: "pc-gaming",
     sub: "",
-    brand: "Nguyên Khang PC",
+    brand: "Intel",
     price: 15990000,
     image: "images/pc-gaming-1.jpg",
     tags: ["i5-12400F", "RTX 3060", "16GB"],
@@ -35,7 +35,7 @@ const PRODUCTS = [
     name: "PC Gaming NK Pro - i5-13400F / RTX 4060 8GB / 16GB / SSD 512GB",
     cat: "pc-gaming",
     sub: "",
-    brand: "Nguyên Khang PC",
+    brand: "Intel",
     price: 19490000,
     image: "images/pc-gaming-2.jpg",
     tags: ["i5-13400F", "RTX 4060", "16GB"],
@@ -55,7 +55,7 @@ const PRODUCTS = [
     name: "PC Gaming NK Elite - i7-12700F / RTX 3060 Ti 8GB / 32GB / SSD 1TB",
     cat: "pc-gaming",
     sub: "",
-    brand: "Nguyên Khang PC",
+    brand: "Intel",
     price: 23900000,
     image: "images/pc-gaming-3.jpg",
     tags: ["i7-12700F", "RTX 3060Ti", "32GB"],
@@ -75,7 +75,7 @@ const PRODUCTS = [
     name: "PC Gaming NK Esport - i3-12100F / GTX 1660 Super 6GB / 16GB / SSD 512GB",
     cat: "pc-gaming",
     sub: "",
-    brand: "Nguyên Khang PC",
+    brand: "Intel",
     price: 9890000,
     image: "images/pc-gaming-4.jpg",
     tags: ["i3-12100F", "GTX 1660S", "16GB"],
@@ -99,7 +99,7 @@ const PRODUCTS = [
     name: "PC Văn Phòng Plus - i5-12400 / 16GB / SSD 512GB / Intel UHD",
     cat: "pc-do-hoa",
     sub: "",
-    brand: "Nguyên Khang PC",
+    brand: "Intel",
     price: 9490000,
     image: "images/pc-do-hoa-1.jpg",
     tags: ["i5-12400", "UHD 730", "16GB"],
@@ -118,7 +118,7 @@ const PRODUCTS = [
     name: "PC Đồ Họa NK Design - i5-13500 / RTX 3050 6GB / 32GB / SSD 1TB",
     cat: "pc-do-hoa",
     sub: "",
-    brand: "Nguyên Khang PC",
+    brand: "Intel",
     price: 16290000,
     image: "images/pc-do-hoa-2.jpg",
     tags: ["i5-13500", "RTX 3050", "32GB"],
@@ -137,7 +137,7 @@ const PRODUCTS = [
     name: "PC Workstation NK Studio - i7-12700 / RTX 3060 12GB / 32GB / SSD 1TB",
     cat: "pc-do-hoa",
     sub: "",
-    brand: "Nguyên Khang PC",
+    brand: "Intel",
     price: 22900000,
     image: "images/pc-do-hoa-3.jpg",
     tags: ["i7-12700", "RTX 3060 12G", "32GB"],
@@ -156,7 +156,7 @@ const PRODUCTS = [
     name: "PC Văn Phòng Basic - i3-12100 / 8GB / SSD 256GB / Intel UHD",
     cat: "pc-do-hoa",
     sub: "",
-    brand: "Nguyên Khang PC",
+    brand: "Intel",
     price: 6190000,
     image: "images/pc-do-hoa-4.jpg",
     tags: ["i3-12100", "UHD 730", "8GB"],
@@ -1384,3 +1384,140 @@ const PRODUCTS = [
     featured: false
   }
 ];
+// =========================================================================
+// TỰ ĐỘNG ĐỒNG BỘ TỪ GOOGLE SHEETS CSV (MIỄN PHÍ TRỌN ĐỜI & CÓ DỰ PHÒNG AN TOÀN)
+// Hướng dẫn: Dán link "Publish to web (.csv)" của Google Sheets vào giữa 2 dấu nháy dưới đây.
+// Nếu để trống "", web sẽ dùng danh sách PRODUCTS mặc định ở phía trên.
+// =========================================================================
+var GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSD0REJV64OHiuWvICfcTFLalYd0FoW7eLst6u5nrpbuEdd8V5eKBhCEalLy22MzEY_uZ-Pbwd3JBKZ/pub?gid=1335051398&single=true&output=csv";
+
+function parseCSVRows(csvText) {
+  var rows = [];
+  var currentRow = [];
+  var currentCell = "";
+  var inQuotes = false;
+
+  for (var i = 0; i < csvText.length; i++) {
+    var char = csvText[i];
+    var nextChar = csvText[i + 1];
+
+    if (inQuotes) {
+      if (char === '"' && nextChar === '"') {
+        currentCell += '"';
+        i++;
+      } else if (char === '"') {
+        inQuotes = false;
+      } else {
+        currentCell += char;
+      }
+    } else {
+      if (char === '"') {
+        inQuotes = true;
+      } else if (char === ",") {
+        currentRow.push(currentCell.trim());
+        currentCell = "";
+      } else if (char === "\n" || (char === "\r" && nextChar === "\n")) {
+        currentRow.push(currentCell.trim());
+        rows.push(currentRow);
+        currentRow = [];
+        currentCell = "";
+        if (char === "\r") i++;
+      } else {
+        currentCell += char;
+      }
+    }
+  }
+  if (currentCell !== "" || currentRow.length > 0) {
+    currentRow.push(currentCell.trim());
+    rows.push(currentRow);
+  }
+  return rows;
+}
+
+function parseSimpleSpecs(specsStr) {
+  if (!specsStr) return {};
+  var str = String(specsStr).trim();
+  // Nếu lỡ nhập dạng JSON {"CPU":"i5"} thì vẫn đọc được
+  if (str.charAt(0) === "{") {
+    try {
+      return JSON.parse(str);
+    } catch (e) {}
+  }
+  // Đọc dạng tự nhiên cho chủ shop: "Socket: LGA1700; Bảo hành: 36 tháng"
+  var result = {};
+  var pairs = str.split(/[;\n]+/);
+  for (var i = 0; i < pairs.length; i++) {
+    var pair = pairs[i].trim();
+    if (!pair) continue;
+    var colonIdx = pair.indexOf(":");
+    if (colonIdx !== -1) {
+      var k = pair.slice(0, colonIdx).trim();
+      var v = pair.slice(colonIdx + 1).trim();
+      if (k && v) result[k] = v;
+    }
+  }
+  return result;
+}
+
+async function syncProductsFromGoogleSheet() {
+  if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.indexOf("http") !== 0) {
+    return; // Chưa gắn link Sheets thì giữ nguyên mảng PRODUCTS mặc định
+  }
+  try {
+    var res = await fetch(GOOGLE_SHEET_CSV_URL);
+    if (!res.ok) return;
+    var csvText = await res.text();
+    var rows = parseCSVRows(csvText);
+    if (rows.length < 2) return;
+
+    var headers = rows[0].map(function (h) {
+      return h.toLowerCase().trim();
+    });
+
+    var sheetProducts = [];
+    for (var r = 1; r < rows.length; r++) {
+      var row = rows[r];
+      if (!row || row.length === 0) continue;
+
+      var obj = {};
+      for (var c = 0; c < headers.length; c++) {
+        obj[headers[c]] = row[c] !== undefined ? row[c] : "";
+      }
+
+      if (!obj.id || !obj.name) continue;
+
+      var cleanPrice = String(obj.price || "0").replace(/[^0-9]/g, "");
+      var tagsArr = obj.tags
+        ? String(obj.tags)
+            .split(",")
+            .map(function (t) {
+              return t.trim();
+            })
+            .filter(Boolean)
+            .slice(0, 3)
+        : [];
+
+      sheetProducts.push({
+        id: obj.id.trim(),
+        name: obj.name.trim(),
+        cat: (obj.cat || "linh-kien").trim(),
+        sub: (obj.sub || "").trim(),
+        brand: (obj.brand || "Khác").trim(),
+        price: Number(cleanPrice) || 0,
+        image: (obj.image || "").trim(),
+        tags: tagsArr,
+        specs: parseSimpleSpecs(obj.specs),
+        featured: String(obj.featured).toUpperCase() === "TRUE"
+      });
+    }
+
+    if (sheetProducts.length > 0) {
+      PRODUCTS.length = 0;
+      for (var k = 0; k < sheetProducts.length; k++) {
+        PRODUCTS.push(sheetProducts[k]);
+      }
+    }
+  } catch (err) {
+    console.warn("Đang sử dụng dữ liệu sản phẩm dự phòng tại chỗ.");
+  }
+}
