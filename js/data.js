@@ -1464,7 +1464,10 @@ async function syncProductsFromGoogleSheet() {
     return; // Chưa gắn link Sheets thì giữ nguyên mảng PRODUCTS mặc định
   }
   try {
-    var res = await fetch(GOOGLE_SHEET_CSV_URL);
+      var ctrl = new AbortController();
+      var timer = setTimeout(function () { ctrl.abort(); }, 4000);
+      var res = await fetch(GOOGLE_SHEET_CSV_URL, { signal: ctrl.signal });
+      clearTimeout(timer);
     if (!res.ok) return;
     var csvText = await res.text();
     var rows = parseCSVRows(csvText);
