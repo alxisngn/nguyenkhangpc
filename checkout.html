@@ -192,6 +192,8 @@
           class="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm outline-none focus:border-accent"></textarea>
       </div>
 
+      <input type="text" id="hp" name="website" tabindex="-1" autocomplete="off" class="hidden">
+
       <div class="pt-2 flex flex-col sm:flex-row gap-3">
         <button type="submit" class="flex-1 bg-accent hover:bg-accent-hover text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm uppercase">
           <i class="fa-solid fa-check-circle"></i><span>Xác Nhận Đặt Hàng</span>
@@ -240,10 +242,10 @@
           <i class="fa-solid fa-headset text-accent"></i>Hỗ trợ khách hàng
         </h3>
         <ul class="space-y-3 text-sm">
-          <li><a href="#" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Chính sách vận chuyển &amp; giao nhận</a></li>
-          <li><a href="#" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Chính sách đổi trả &amp; hoàn tiền linh kiện lỗi</a></li>
-          <li><a href="#" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Hướng dẫn thanh toán &amp; mua PC trả góp</a></li>
-          <li><a href="#" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Quy định bảo hành chính hãng</a></li>
+          <li><a href="chinh-sach-van-chuyen.html" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Chính sách vận chuyển &amp; giao nhận</a></li>
+          <li><a href="chinh-sach-doi-tra.html" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Chính sách đổi trả &amp; hoàn tiền linh kiện lỗi</a></li>
+          <li><a href="huong-dan-thanh-toan.html" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Hướng dẫn thanh toán &amp; mua PC trả góp</a></li>
+          <li><a href="chinh-sach-bao-hanh.html" class="flex items-center gap-2 hover:text-accent transition"><i class="fa-solid fa-angle-right text-accent text-xs"></i>Quy định bảo hành chính hãng</a></li>
         </ul>
 
         <div class="mt-6 bg-white/5 border border-white/10 rounded-xl p-4 text-sm">
@@ -341,6 +343,19 @@
         var address = (document.getElementById("customer-address") ? document.getElementById("customer-address").value : "").trim();
         var note = (document.getElementById("customer-note") ? document.getElementById("customer-note").value : "").trim();
 
+                if (document.getElementById("hp") && document.getElementById("hp").value) { return; }
+
+        var phoneClean = phone.replace(/[\s.\-]/g, "");
+        if (!/^(0|\+84)\d{9}$/.test(phoneClean)) {
+          alert("Số điện thoại chưa đúng. Vui lòng nhập 10 số, ví dụ 0708715678.");
+          return;
+        }
+        var lastOrder = Number(localStorage.getItem("nkpc_last_order") || 0);
+        if (Date.now() - lastOrder < 30000) {
+          alert("Bạn vừa gửi đơn. Vui lòng đợi ít phút rồi thử lại.");
+          return;
+        }
+
         // Đọc giỏ hàng từ localStorage key "nkpc_cart"
         var cartRaw = localStorage.getItem("nkpc_cart");
         var cart = [];
@@ -385,7 +400,9 @@
           grandTotal += pPrice * pQty;
         }
 
-        var orderId = "NKPC-" + Math.floor(100000 + Math.random() * 900000);
+          var d = new Date();
+          var pad = function (n) { return String(n).padStart(2, "0"); };
+          var orderId = "NKPC-" + String(d.getFullYear()).slice(2) + pad(d.getMonth() + 1) + pad(d.getDate()) + "-" + Math.floor(1000 + Math.random() * 9000);
 
         var payload = {
           orderId: orderId,
@@ -407,22 +424,22 @@
         // DÁN ĐƯỜNG LINK WEB APP URL BẠN VỪA COPY Ở BƯỚC 2 VÀO DƯỚI ĐÂY
         var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBb2sN97Oo46N5vpG_vktT_xrhMN7q3wDAPhnhlcXFNCMN5ZO7dTHMGO9N2-TPlF8k/exec";
 
-        fetch(SCRIPT_URL, {
+                fetch(SCRIPT_URL, {
           method: "POST",
-          mode: "no-cors", // Bắt buộc dùng no-cors cho Google Apps Script
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload)
         })
-        .then(function () {
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+             if (!data || data.status !== "success") { throw new Error("server"); }
+          localStorage.setItem("nkpc_last_order", String(Date.now()));
           // Xóa giỏ hàng sau khi đặt thành công
           localStorage.removeItem("nkpc_cart");
           if (typeof updateCartCount === "function") {
             updateCartCount();
           }
 
-          alert("Đặt hàng thành công! Mã đơn của bạn là: " + orderId + ". Nguyên Khang PC sẽ liên hệ sớm nhất.");
+             alert("Đặt hàng thành công! Mã đơn của bạn là: " + (data.orderId || orderId) + ". Nguyên Khang PC sẽ liên hệ sớm nhất.");
           window.location.href = "index.html";
         })
         .catch(function (error) {
