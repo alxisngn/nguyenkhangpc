@@ -439,7 +439,9 @@
             updateCartCount();
           }
 
-             alert("Đặt hàng thành công! Mã đơn của bạn là: " + (data.orderId || orderId) + ". Nguyên Khang PC sẽ liên hệ sớm nhất.");
+          if (typeof fbq === "function") { fbq("track", "Purchase", { value: grandTotal, currency: "VND" }); }
+          if (typeof gtag === "function") { gtag("event", "purchase", { transaction_id: orderId, value: grandTotal, currency: "VND" }); }
+          alert("Đặt hàng thành công! Mã đơn của bạn là: " + (data.orderId || orderId) + ". Nguyên Khang PC sẽ liên hệ sớm nhất.");
           window.location.href = "index.html";
         })
         .catch(function (error) {
